@@ -72,7 +72,7 @@ userSchema.methods.toJSON = function () {
 
 userSchema.methods.generateAuthToken = async function () {
     const userObj = this
-    const token = jwt.sign({ _id: userObj._id.toString() }, 'thisisraphaeltest')
+    const token = jwt.sign({ _id: userObj._id.toString() }, process.env.JWT_SECRET)
     userObj.tokens = userObj.tokens.concat({ token })
     userObj.save()
 
